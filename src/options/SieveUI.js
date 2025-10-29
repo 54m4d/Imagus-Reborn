@@ -603,6 +603,8 @@ var sieve_sec,
                     js_beautify(value, {
                         "indent_size": "2",
                         "keep_array_indentation": true,
+                        "space_before_conditional": true,
+                        "brace_style": "none,preserve-inline",
                     }),
                     -1
                 );
