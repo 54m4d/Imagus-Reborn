@@ -275,7 +275,7 @@ var load = function () {
             fld.value = fld.defValue = shosts.join("\n");
         } else if (pref[0] === "keys") {
             m = pref[1].replace("-", "_");
-            if (prefs.keys[m] !== void 0) fld.value = fld.defValue = prefs.keys[m].toUpperCase();
+            if (prefs.keys[m] !== void 0) fld.value = fld.defValue = prefs.keys[m];
         } else if (prefs[pref[0]] && prefs[pref[0]][pref[1]] !== void 0) {
             fld_type = fld.getAttribute("type") || "text";
             if (fld.type !== fld_type) fld_type = fld.type;
@@ -497,70 +497,29 @@ window.addEventListener(
                 location.hash = e.target.hash;
             }
         };
-        document.forms[0].addEventListener(
-            "keydown",
-            function (e) {
-                e.stopPropagation();
-                if (e.which === 13) e.target.form_saved = true;
-                if (e.repeat || !e.target.name || e.target.name.indexOf("keys_") !== 0 || e.ctrlKey || e.altKey || e.metaKey || e.which < 47) return;
-                e.preventDefault();
-                color_trans(e.target, null);
-                var keys = {
-                    96: "0",
-                    97: "1",
-                    98: "2",
-                    99: "3",
-                    100: "4",
-                    101: "5",
-                    102: "6",
-                    103: "7",
-                    104: "8",
-                    105: "9",
-                    106: "*",
-                    107: "+",
-                    109: "-",
-                    110: ".",
-                    111: "/",
-                    173: "-",
-                    186: ";",
-                    187: "=",
-                    188: ",",
-                    189: "-",
-                    190: ".",
-                    191: "/",
-                    192: "`",
-                    219: "[",
-                    220: "\\",
-                    221: "]",
-                    222: "'",
-                    112: "F1",
-                    113: "F2",
-                    114: "F3",
-                    115: "F4",
-                    116: "F5",
-                    117: "F6",
-                    118: "F7",
-                    119: "F8",
-                    120: "F9",
-                    121: "F10",
-                    122: "F11",
-                    123: "F12",
-                };
-                var key = keys[e.which] || String.fromCharCode(e.which).toUpperCase();
-                var mod = e.target.name[7] === "-" ? e.target.name.substr(5, 2) : null;
-                keys = document.body.querySelectorAll('input[name^="keys_"]');
-                for (var i = 0; i < keys.length; ++i) {
-                    if (keys[i].value.toUpperCase() !== key) continue;
-                    if (!mod || keys[i].name[7] !== "-" || keys[i].name.substr(5, 2) === mod) {
-                        if (e.target !== keys[i]) color_trans(e.target, "red");
-                        return false;
-                    }
+
+        function keyHandler(e) {
+            if (e.key === "Enter") e.target.form_saved = true;
+            var key = shortcut.key(e, true);
+            if (e.repeat || !e.target.name?.startsWith("keys_") || e.ctrlKey || e.altKey || e.metaKey || !key) return;
+            e.stopPropagation();
+            e.preventDefault();
+            color_trans(e.target, null);
+            var keys = document.body.querySelectorAll('input[name^="keys_"]');
+            for (var i = 0; i < keys.length; ++i) {
+                if (keys[i].value.toUpperCase() === key.toUpperCase() && e.target !== keys[i]) {
+                    color_trans(e.target, "red");
+                    color_trans(keys[i], "red");
+                    return false;
                 }
-                e.target.value = key;
-                document.forms[0].onchange(e);
-            },
-            false
-        );
+            }
+            if (e.code === 'Escape') key = "";
+            e.target.value = key;
+            document.forms[0].onchange(e);
+        }
+        document.forms[0].addEventListener("keydown", keyHandler, false);
+        document.forms[0].addEventListener("mouseup", keyHandler, false);
+
         document.forms[0].addEventListener(
             "contextmenu",
             function (e) {

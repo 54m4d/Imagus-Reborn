@@ -32,74 +32,6 @@
         Port.send({ cmd: "open", url: urls, nf: !!sf.nf });
     };
 
-    var shortcut = {
-        specKeys: {
-            8: "Backspace",
-            9: "Tab",
-            13: "Enter",
-            16: "shift",
-            17: "ctrl",
-            18: "alt",
-            27: "Esc",
-            32: "Space",
-            33: "PgUp",
-            34: "PgDn",
-            35: "End",
-            36: "Home",
-            37: "Left",
-            38: "Up",
-            39: "Right",
-            40: "Down",
-            45: "Ins",
-            46: "Del",
-            96: "0",
-            97: "1",
-            98: "2",
-            99: "3",
-            100: "4",
-            101: "5",
-            102: "6",
-            103: "7",
-            104: "8",
-            105: "9",
-            106: "*",
-            107: "+",
-            109: "-",
-            110: ".",
-            111: "/",
-            173: "-",
-            186: ";",
-            187: "=",
-            188: ",",
-            189: "-",
-            190: ".",
-            191: "/",
-            192: "`",
-            219: "[",
-            220: "\\",
-            221: "]",
-            222: "'",
-            112: "F1",
-            113: "F2",
-            114: "F3",
-            115: "F4",
-            116: "F5",
-            117: "F6",
-            118: "F7",
-            119: "F8",
-            120: "F9",
-            121: "F10",
-            122: "F11",
-            123: "F12",
-        },
-        isModifier: function (e) {
-            return e.which > 15 && e.which < 19;
-        },
-        key: function (e) {
-            return this.specKeys[e.which] || String.fromCharCode(e.which).toUpperCase();
-        },
-    };
-
     var checkBG = function (imgs) {
         if (imgs)
             if (Array.isArray((imgs = imgs.match(/\burl\(([^'"\)][^\)]*|"[^"\\]+(?:\\.[^"\\]*)*|'[^'\\]+(?:\\.[^'\\]*)*)(?=['"]?\))/g)))) {
@@ -150,6 +82,10 @@
             return;
         }
         if (e.type === "mouseup") {
+            if ([1, 3, 4].includes(e.button)) {
+                PVI.key_action(e);
+                return;
+            }
             if (e.target !== PVI.CNT || PVI.fullZm || e.button !== 0) return;
             if (e.ctrlKey || e.shiftKey || e.altKey) return;
             if (PVI.md_x !== e.clientX || PVI.md_y !== e.clientY) return;
@@ -1785,7 +1721,17 @@
                 } else pv = false;
             } else if (!(e.altKey || e.metaKey) && (PVI.state > 2 || PVI.LDR_msg)) {
                 pv = !e.ctrlKey;
-                if (e.ctrlKey) {
+                if (e.ctrlKey && key === "S" || !e.ctrlKey && !e.shiftKey && key === cfg.keys.hz_save) {
+                    if (!e.repeat && PVI.CNT.src) {
+                        Port.send({
+                            cmd: "download",
+                            url: PVI.CNT.src,
+                            priorityExt: (PVI.CNT.src.match(/#([\da-z]{3,4})$/) || [])[1],
+                            ext: { img: "jpg", video: "mp4", audio: "mp3" }[PVI.CNT.audio ? "audio" : PVI.CNT.localName],
+                        });
+                    }
+                    pv = true;
+                } else if (e.ctrlKey) {
                     if (PVI.state === 4)
                         if (key === "C") {
                             if (!e.shiftKey && "oncopy" in doc) {
@@ -1801,15 +1747,6 @@
                                 doc.execCommand("copy");
                                 PVI.timers.copy = Date.now();
                             }
-                        } else if (key === "S") {
-                            if (!e.repeat && PVI.CNT.src)
-                                Port.send({
-                                    cmd: "download",
-                                    url: PVI.CNT.src,
-                                    priorityExt: (PVI.CNT.src.match(/#([\da-z]{3,4})$/) || [])[1],
-                                    ext: { img: "jpg", video: "mp4", audio: "mp3" }[PVI.CNT.audio ? "audio" : PVI.CNT.localName],
-                                });
-                            pv = true;
                         } else if (key === cfg.keys.hz_open) {
                             key = {};
                             ((PVI.TRG.IMGS_caption || "").match(/\b((?:www\.[\w-]+(\.\S{2,7}){1,4}|https?:\/\/)\S+)/g) || []).forEach(function (el) {
@@ -1824,6 +1761,9 @@
                         } else if (key === "Left" || key === "Right") {
                             key = key === "Left" ? -5 : 5;
                             PVI.VID.currentTime += key * (e.shiftKey ? 3 : 1);
+                        } else if (key === "Up" || key === "Down") {
+                            const delta = key === "Down" ? -0.05 : 0.05;
+                            PVI.VID.volume = Math.min(1, PVI.VID.volume + delta);
                         }
                 } else if (key === "-" || key === "+" || key === "=") PVI.resize(key === "-" ? "-" : "+");
                 else if (key === "Tab") {

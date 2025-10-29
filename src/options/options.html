@@ -379,7 +379,7 @@ ImgOps|http://imgops.com/%raw_url</textarea>
 				<li><label for="keys_hz-caption"><input id="keys_hz-caption" name="keys_hz-caption" value="C"> <span data-lng="HZ_SC_CAPTION"></span></label></li>
 				<li><label for="keys_hz-open"><input id="keys_hz-open" name="keys_hz-open" value="O"> <span data-lng="HZ_SC_OPEN"></span></label></li>
 				<li><label for="keys_hz-history"><input id="keys_hz-history" name="keys_hz-history" value="H"> <span data-lng="HZ_SC_HISTORY"></span></label></li>
-				<li><b>Ctrl + S</b> <label data-lng="HZ_SC_SAVE"></label></li>
+				<li><label for="keys_hz-save"><input id="keys_hz-save" name="keys_hz-save" value="">, <b>Ctrl + S</b> <span data-lng="HZ_SC_SAVE"></span></label></li>
 				<li><b>Ctrl + C</b> <label data-lng="HZ_SC_COPY"></label></li>
 				<li><b>Esc</b> <label data-lng="HZ_SC_RESET"></label></li>
 				<li><b>+</b> / <b>-</b> <span data-lng="SC_ZOOMINOUT"></span></li>
@@ -400,14 +400,15 @@ ImgOps|http://imgops.com/%raw_url</textarea>
 				<li style="list-style-type: none"><h4>In album</h4></li>
 				<li><b>Space</b>, <b>Right</b>, <b>PageDown</b> Step forward</li>
 				<li><b>Shift + Space</b>, <b>Left</b>, <b>PageUp</b> Step backward</li>
-				<li><b>Shift + Left/Right, <b>Shift + PageUp/PageDown</b></b> Step 5 backward/forward</li>
+				<li><b>Shift + Left/Right, <b>Shift + PageUp/PageDown</b></b> Step 5 items backward/forward</li>
 				<li><b>Home</b>, <b>End</b> Jump to start/end</li>
 				<li><b>Shift + End</b> Jump to number, or search for captions</li>
 
 				<li style="list-style-type: none"><h4>On media (audio/video)</h4></li>
 				<li><b>Space</b> Play/Pause</li>
 				<li><b>Shift + Space</b> Show/Hide controls</li>
-				<!-- <li><b>Up/Down</b> Adjust volume</li> -->
+				<li><b>Ctrl + Left/Right</b> Backward/forward 5s (+Shift: 15s)</li>
+				<li><b>Ctrl + Up/Down</b> Adjust volume</li>
 				<li><b>Shift + Up/Down</b> Speed up/down</li>
 				<li><b>PageUp/PageDown</b> Frame-step for video (assumes 25fps), seek for audio (4s)</li>
 			</ul>
