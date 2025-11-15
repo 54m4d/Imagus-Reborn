@@ -556,7 +556,7 @@ window.addEventListener(
             if ((t.type === "checkbox" && t[defval + "Checked"] !== t.checked) || (t.type !== "checkbox" && t[defval + "Value"] != t.value))
                 input_changes[t.name] = true;
             else delete input_changes[t.name];
-            $("save_button").style.color = Object.keys(input_changes).length ? "#e03c00" : "";
+            $("save_button").classList.toggle("alert", !!Object.keys(input_changes).length);
         };
         var reset_button = $("reset_button");
         reset_button.reset = function () {
@@ -595,6 +595,7 @@ window.addEventListener(
                 e.preventDefault();
                 save();
                 color_trans(this, "green");
+                e.target.classList.remove("alert");
             },
             false
         );

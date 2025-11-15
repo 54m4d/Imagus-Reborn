@@ -39,6 +39,7 @@ body {
 a {
     color: #1155ef;
     text-decoration: none;
+    cursor: pointer;
 }
 a:hover {
     color: #000;
@@ -51,6 +52,7 @@ a:hover {
 }
 .cur_zmin {
     cursor: zoom-in;
+    text-decoration: underline 1px dotted black;
 }
 .cf:after {
     clear: both;
@@ -191,10 +193,6 @@ nav > .active {
     border-bottom: 3px solid #000;
     color: #000;
 }
-.prow {
-    clear: both;
-    padding-bottom: 3px;
-}
 .prow,
 .tiptop {
     position: relative;
@@ -213,7 +211,7 @@ nav > .active {
     top: -5px;
     transition: visibility 0s 0.5s, opacity 0.5s, color 0.7s;
     visibility: hidden;
-    white-space: pre-wrap;
+    white-space: pre-line;
     width: 33px;
     z-index: 1;
 }
@@ -259,19 +257,28 @@ nav > .active {
 .prow > span:not(.clean) {
     box-sizing: border-box;
     display: inline-block;
-    width: 49.6%;
 }
-.prow > label {
-    padding-top: 8px;
+label {
+    cursor: pointer;
 }
-.prow:hover label:not(.checkbox),
-label:not(.checkbox):hover {
-    color: #45f;
+form .prow:not(.advanced),
+body.advanced form .advanced {
+    display: flex;
+}
+.prow {
+    justify-content: space-between;
+    padding: 4px 6px;
+    align-items: center;
+    border-radius: 4px;
+}
+.prow.wrap {
+    flex-wrap: wrap;
+}
+.prow:hover {
+    background-color: #f0f8ff;
 }
 .prow > span:not(.clean) {
     float: right;
-    margin-top: 4px;
-    max-width: 50%;
     text-align: right;
 }
 .prow input[type="text"] {
@@ -323,14 +330,18 @@ code {
     display: inline-block;
     padding: 3px 5px;
 }
+.tip code {
+    user-select: all;
+}
 select {
     max-width: 100%;
 }
 textarea {
     box-sizing: border-box;
-    resize: none;
+    resize: vertical;
     tab-size: 4;
     width: 100%;
+    min-height: 76px;
 }
 .checkbox:hover,
 .prow:hover .checkbox,
@@ -366,7 +377,7 @@ form input[type="checkbox"] {
     content: "✔";
     font-family: Segoe UI Symbol, sans-serif;
     font-weight: 700;
-    left: 3px;
+    left: 4px;
     position: absolute;
     top: 0;
 }
@@ -465,8 +476,12 @@ h3 {
     font: 700 14px Arial;
     margin-bottom: 10px;
     padding: 10px 0;
-    transition: border-color 0.3s, color 0.3s;
+    transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
     width: 95%;
+}
+button.alert {
+    color: #e03c00;
+    box-shadow: 0 0 2px 1px #e03c0099;
 }
 .file_button:hover,
 .op_buttons > button:hover {
@@ -497,7 +512,6 @@ h3 {
 }
 #sieve_count {
     margin-left: 10px;
-    vertical-align: sub;
 }
 #sieve_container > div {
     float: left;

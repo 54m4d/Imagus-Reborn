@@ -442,6 +442,7 @@ var sieve_sec,
             rd_fc.click();
             rd.querySelector('[data-action="rename"]').click();
             this.countRules();
+            $("save_button").classList.add("alert");
         },
         select: function (type, i, until) {
             var cl;
