@@ -401,10 +401,10 @@ var sieve_sec,
                         enableSnippets: true,
                         enableLiveAutocompletion: !small,
                     });
-                    // editor.session.setOptions({
-                    //     wrap: true,
-                    //     wrapMethod: isCode ? "code" : "text",
-                    // });
+                    editor.session.setOptions({
+                        wrap: true,
+                        wrapMethod: isCode ? "code" : "text",
+                    });
                     editor.renderer.setScrollMargin(4, 4, 0, 0);
                     editor.setKeyboardHandler("ace/keyboard/vscode");
                     if (!small) {
