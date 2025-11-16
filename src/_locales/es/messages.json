@@ -30,7 +30,7 @@
     "message": "¿Estás seguro?"
   },
   "DELITEMS": {
-    "message": "Eliminar todos los elementos o solo los seleccionados?"
+    "message": "¿Eliminar estas reglas?"
   },
   "EMPTY": {
     "message": "No hay nada por aquí..."
@@ -243,10 +243,10 @@
     "message": "Importar"
   },
   "SIV_BUTT_EXP": {
-    "message": "Exportar todo o seleccionado.\nCtrl: Exportar a una nueva pestaña.\nShift: Formatear JSON."
+    "message": "Exportar todo o seleccionado.\nCtrl: Exportar a una nueva pestaña."
   },
   "SIV_BUTT_COPY": {
-    "message": "Copiar todas o las reglas seleccionadas al portapapeles.\nShift: Formatear JSON."
+    "message": "Copiar todas o las reglas seleccionadas al portapapeles."
   },
   "SIV_BUTT_UPD": {
     "message": "Actualizar filtros"
@@ -258,10 +258,10 @@
     "message": "Eliminar regla"
   },
   "SIV_EXP_RULE": {
-    "message": "Exportar regla.\nCtrl: Exportar a una nueva pestaña.\nShift: Formatear JSON."
+    "message": "Exportar regla.\nCtrl: Exportar a una nueva pestaña."
   },
   "SIV_COPY_RULE": {
-    "message": "Copiar regla al portapapeles.\nShift: Formatear JSON."
+    "message": "Copiar regla al portapapeles."
   },
   "SIV_CI": {
     "message": "No distinguir mayúsculas de minúsculas"
@@ -285,7 +285,7 @@
     "message": "¡Cada regla debe tener un nombre único!"
   },
   "SIV_DETAILS": {
-    "message": "<b>Ctrl + clic derecho</b> para borrar<br><b>Arrastrar</b> con el <b>botón izquierdo</b> para mover<br><b>Shift + clic derecho</b> para renombrar (<b>Esc/Enter</b> para salir)<br><b>Ctrl + clic izquierdo</b> para seleccionar (<b>Shift</b> para activar selección múltiple)"
+    "message": "Arrastre con el botón <b>Mouse Left</b> para reordenar<br><b>Ctrl + Mouse Left</b>: seleccionar (selección múltiple con <b>Shift</b>)<br><b>Esc</b>: cancelar selección<br><b>Mouse Right</b>: renombrar (<b>Esc</b>/<b>Enter</b> sale)<br><b>Del</b>, <b>Ctrl + Mouse Right</b>: eliminar<br><b>Ctrl + Space</b>, <b>Shift + Mouse Right</b>: desactivar/activar<br><b>Ctrl + I</b>, <b>Ins</b>: importar<br><b>Ctrl + E</b>, <b>Alt + Mouse Right</b>: exportar<br><b>Ctrl + S</b>: guardar"
   },
   "GRNT_RULEPERLINE": {
     "message": "Una regla por línea: Para más información, pulsa el botón \"Detalles\" a la derecha."
@@ -327,7 +327,7 @@
     "message": "claro"
   },
   "HZ_MARKONHOVER_TIP": {
-    "message": "Al pasar el puntero del ratón sobre un enlace o miniatura, <b class=\"cur_zmin\">el cursor</b> o el <span style=\"border: 1px dashed red\">contorno del elemento</span>\ncambiará, indicando que el elemento se puede ampliar con el visor."
+    "message": "Cuando el cursor del ratón se mueve sobre un enlace o miniatura y hay algo que ampliar:\n• el contorno del <span style=\"padding: 1px; translate: -1px -1px; outline: rgb(255, 120, 120) dashed 2px; box-shadow: white 0px 0px 0px 2px; border-radius: 2px;\">objetivo</span> puede cambiarse (puede personalizarse en el modo avanzado)\n• y/o <b class=\"cur_zmin\">el cursor puede cambiarse</b>"
   },
   "HZ_FULLSPACE_TIP": {
     "message": "Al activar esta opción, el visor se expandirá debajo del puntero del ratón si no hay espacio suficiente entre el puntero y el resto de la página.\nSi la ubicación del visor (ver la opción anterior) esta seleccionada en \"al centro\", entonces el visor siempre usará todo el espacio disponible, por lo que no tiene caso activar esta opción."
@@ -478,5 +478,17 @@
   },
   "SIV_TOG_RULE": {
     "message": "Deshabilitar/habilitar regla"
+  },
+  "HZ_HOVER_CSS": {
+    "message": "Estilo de elementos con capacidad de zoom (CSS)"
+  },
+  "HZ_MARKONHOVER_STYLED": {
+    "message": "esquema (estilo personalizado)"
+  },
+  "HZ_MARKONHOVER_BOTH": {
+    "message": "ambos"
+  },
+  "IMPR_HINT": {
+    "message": "Esc: cerrar | Ctrl + Enter: importar desde texto"
   }
 }

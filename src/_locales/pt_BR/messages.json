@@ -27,7 +27,7 @@
     "message": "Você tem certeza?"
   },
   "DELITEMS": {
-    "message": "Remover todos os itens selecionados?"
+    "message": "Remover essas regras?"
   },
   "EMPTY": {
     "message": "Vazia..."
@@ -240,7 +240,7 @@
     "message": "Importar"
   },
   "SIV_BUTT_EXP": {
-    "message": "Exportar todos ou selecionados"
+    "message": "Exporte tudo ou selecionado.\nCtrl: Exportar para uma nova guia."
   },
   "SIV_BUTT_UPD": {
     "message": "Atualizar filtros"
@@ -264,7 +264,7 @@
     "message": "Cada regra deve ter seu nome particular!"
   },
   "SIV_DETAILS": {
-    "message": "Ctrl + clique direito para deletar<br>Arrastre com o botão esquerdo do mouse para mover<br>Shift + clique direito para renomear (Esc/Enter sai)<br>Ctrl + clique direto para selecionar (selecione várias usando Shift)"
+    "message": "Arraste com o botão <b>Mouse Left</b> para reordenar<br><b>Ctrl + Mouse Left</b>: selecionar (seleção múltipla com <b>Shift</b>)<br><b>Esc</b>: cancelar seleção<br><b>Mouse Right</b>: renomear (<b>Esc</b>/<b>Enter</b> sai)<br><b>Del</b>, <b>Ctrl + Mouse Right</b>: eliminar<br><b>Ctrl + Space</b>, <b>Shift + Mouse Right</b>: desativar/ativar<br><b>Ctrl + I</b>, <b>Ins</b>: importar<br><b>Ctrl + E</b>, <b>Alt + Mouse Right</b>: exportar<br><b>Ctrl + S</b>: guardar"
   },
   "GRNT_RULEPERLINE": {
     "message": "Regra por linha. Para maiores informações, clique no botão \"Detalhes\"."
@@ -306,7 +306,7 @@
     "message": "branca"
   },
   "HZ_MARKONHOVER_TIP": {
-    "message": "Quando o cursor do mouse for movido em cima de um link ou miniatura, <b class=\"cur_zmin\">o cursor</b> ou o contorno do <span style=\"border: 1px dashed red\">objeto</span> sofrerá uma alteração, indicando que o zoom pode ser usado."
+    "message": "Quando o cursor do mouse é movido sobre um link ou miniatura e há algo para ampliar:\n• o contorno do <span style=\"padding: 1px; translate: -1px -1px; outline: rgb(255, 120, 120) dashed 2px; box-shadow: white 0px 0px 0px 2px; border-radius: 2px;\">alvo</span> pode ser alterado (pode ser personalizado no modo avançado)\n• e/ou <b class=\"cur_zmin\">o cursor pode ser alterado</b>"
   },
   "HZ_FULLSPACE_TIP": {
     "message": "Esta opção possibilita que os pop-ups sejam expandidos pelo cursor do mouse, sempre que não houver espaço suficiente entre o cursor e o canto da página.\nSe o posicionamento selecionado for o de centro (opção anterior), habilitar esta função não é necessário, pois as configurações já estão definidas para que todo o espaço possível seja usado."
@@ -438,16 +438,16 @@
     "message": "Renomear regra"
   },
   "SIV_EXP_RULE": {
-    "message": "Regra de exportação.\nCtrl: Exportar para uma nova guia.\nShift: Formatar JSON."
+    "message": "Regra de exportação.\nCtrl: Exportar para uma nova guia."
   },
   "SIV_DEL_RULE": {
     "message": "Remover regra"
   },
   "SIV_BUTT_COPY": {
-    "message": "Copie todas as regras ou as regras selecionadas para a área de transferência.\nShift: Formatar JSON."
+    "message": "Copie todas as regras ou as regras selecionadas para a área de transferência."
   },
   "SIV_COPY_RULE": {
-    "message": "Copie a regra para a área de transferência.\nShift: Formatar JSON."
+    "message": "Copie a regra para a área de transferência."
   },
   "HZ_MEDIAVOLUME": {
     "message": "Volume de mídia padrão (%)"
@@ -478,5 +478,17 @@
   },
   "SIV_TOG_RULE": {
     "message": "Desabilitar/habilitar regra"
+  },
+  "HZ_HOVER_CSS": {
+    "message": "Estilo de elementos com capacidade de zoom (CSS)"
+  },
+  "HZ_MARKONHOVER_STYLED": {
+    "message": "contorno (estilo personalizado)"
+  },
+  "HZ_MARKONHOVER_BOTH": {
+    "message": "ambos"
+  },
+  "IMPR_HINT": {
+    "message": "Esc: fechar | Ctrl + Enter: importar do texto"
   }
 }

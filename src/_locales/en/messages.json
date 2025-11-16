@@ -129,7 +129,7 @@
     "message": "dotted outline"
   },
   "HZ_HOVER_CSS": {
-    "message": "Mark zoom-able elements style (CSS)"
+    "message": "Style of zoom-able elements (CSS)"
   },
   "HZ_THUMBASBG": {
     "message": "Use the thumbnail as the background of the pop-up"

@@ -30,7 +30,7 @@
     "message": "Biztos vagy benne?"
   },
   "DELITEMS": {
-    "message": "Kijelöltek vagy az összes eltávolítása?"
+    "message": "Eltávolítja ezeket a szabályokat?"
   },
   "EMPTY": {
     "message": "Üres..."
@@ -243,10 +243,10 @@
     "message": "Importálás"
   },
   "SIV_BUTT_EXP": {
-    "message": "Összes vagy kijelöltek exportálása.\nCtrl: Exportálás új fülre.\nShift: JSON formázás."
+    "message": "Összes vagy kijelöltek exportálása.\nCtrl: Exportálás új fülre."
   },
   "SIV_BUTT_COPY": {
-    "message": "Összes vagy kijelöltek másolása a vágólapra.\nShift: JSON formázás."
+    "message": "Összes vagy kijelöltek másolása a vágólapra."
   },
   "SIV_BUTT_UPD": {
     "message": "Szűrő frissítése"
@@ -258,10 +258,10 @@
     "message": "Szabály eltávolítása"
   },
   "SIV_EXP_RULE": {
-    "message": "Szabály exportálása.\nCtrl: Exportálás új fülre.\nShift: JSON formázás."
+    "message": "Szabály exportálása.\nCtrl: Exportálás új fülre."
   },
   "SIV_COPY_RULE": {
-    "message": "Szabály másolása a vágólapra.\nShift: JSON formázás."
+    "message": "Szabály másolása a vágólapra."
   },
   "SIV_CI": {
     "message": "ne legyen érzékeny a kis- és nagybetűkre"
@@ -285,7 +285,7 @@
     "message": "Minden szűrőnek egyedi neve kell, hogy legyen!"
   },
   "SIV_DETAILS": {
-    "message": "Ctrl + jobb klikk törli a szabályt<br>Lehetőség van a szabályok áthelyezésére vonszolással<br>Shift + jobb klikk átnevez (Esc/Enter befejez)<br>Ctrl + bal klikk kijelölés (egyszerre több a Shift lenyomásával)"
+    "message": "Húzza a <b>Mouse Left</b> gombbal az átrendezéshez<br><b>Ctrl + Mouse Left</b>: kijelölés (több kijelölés <b>Shift</b>-tel)<br><b>Esc</b>: kijelölés megszakítása<br><b>Mouse Right</b>: átnevezés (<b>Esc</b>/<b>Enter</b> kilép)<br><b>Del</b>, <b>Ctrl + Mouse Right</b>: törlés<br><b>Ctrl + Space</b>, <b>Shift + Mouse Right</b>: letiltás/engedélyezés<br><b>Ctrl + I</b>, <b>Ins</b>: importálás<br><b>Ctrl + E</b>, <b>Alt + Mouse Right</b>: exportálás<br><b>Ctrl + S</b>: mentés"
   },
   "GRNT_RULEPERLINE": {
     "message": "Feltétel soronként. További információkért kattints a fenti Részletek gombra."
@@ -327,7 +327,7 @@
     "message": "világos"
   },
   "HZ_MARKONHOVER_TIP": {
-    "message": "Amikor az egérkurzor egy link vagy indexkép fölé kerül, megváltozik a <b class=\"cur_zmin\">kurzor</b> vagy az elem köré <span style=\"border: 1px dashed red\">vonal</span> rajzolódik, jelezve a nagyíthatóságot."
+    "message": "Amikor az egér kurzora egy hivatkozás vagy előnézeti kép fölé kerül, és van mit nagyítani:\n• a <span style=\"padding: 1px; translate: -1px -1px; outline: rgb(255, 120, 120) dashed 2px; box-shadow: white 0px 0px 0px 2px; border-radius: 2px;\">cél</span> körvonala megváltoztatható (testreszabható a speciális módban)\n• és/vagy <b class=\"cur_zmin\">a kurzor megváltoztatható</b>"
   },
   "HZ_FULLSPACE_TIP": {
     "message": "Engedélyezi, hogy a felugró az egérkurzor alá méreteződjön, ha annak mérete nagyobb, mint a kurzor és az oldal közötti terület.\nHa az elhelyezkedés középre van állítva (előző opció), akkor ennek a beállításnak nincs értelme, mivel abban az esetben a felugró mindig felhasználja az összes rendelkezésre álló helyet."
@@ -478,5 +478,17 @@
   },
   "SIV_TOG_RULE": {
     "message": "Szabály letiltása/engedélyezése"
+  },
+  "HZ_HOVER_CSS": {
+    "message": "A nagyítható elemek stílusa (CSS)"
+  },
+  "HZ_MARKONHOVER_STYLED": {
+    "message": "vázlat (egyéni stílus)"
+  },
+  "HZ_MARKONHOVER_BOTH": {
+    "message": "mindkét"
+  },
+  "IMPR_HINT": {
+    "message": "Esc: bezár | Ctrl + Enter: importálás szövegből"
   }
 }

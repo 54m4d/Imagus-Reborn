@@ -30,7 +30,7 @@
     "message": "Zeker weten?"
   },
   "DELITEMS": {
-    "message": "Alle of geselecteerde objecten verwijderen?"
+    "message": "Deze regels verwijderen?"
   },
   "EMPTY": {
     "message": "Leeg..."
@@ -243,10 +243,10 @@
     "message": "Importeren"
   },
   "SIV_BUTT_EXP": {
-    "message": "Exporteer alles of geselecteerde.\nCtrl: Exporteer naar nieuw tabblad.\nShift: Formatteer JSON."
+    "message": "Exporteer alles of geselecteerde.\nCtrl: Exporteer naar nieuw tabblad."
   },
   "SIV_BUTT_COPY": {
-    "message": "Kopieer alle of geselecteerde regels naar klembord.\nShift: Formatteer JSON."
+    "message": "Kopieer alle of geselecteerde regels naar klembord."
   },
   "SIV_BUTT_UPD": {
     "message": "Zeef bijwerken"
@@ -258,10 +258,10 @@
     "message": "Regel verwijderen"
   },
   "SIV_EXP_RULE": {
-    "message": "Regel exporteren.\nCtrl: Exporteer naar nieuw tabblad.\nShift: Formatteer JSON."
+    "message": "Regel exporteren.\nCtrl: Exporteer naar nieuw tabblad."
   },
   "SIV_COPY_RULE": {
-    "message": "Regel naar klembord kopiëren.\nShift: Formatteer JSON."
+    "message": "Regel naar klembord kopiëren."
   },
   "SIV_CI": {
     "message": "Niet hoofdletter-gevoelig"
@@ -285,7 +285,7 @@
     "message": "Iedere regel moet een unieke naam hebben!"
   },
   "SIV_DETAILS": {
-    "message": "Ctrl + Rechts klik om te verwijderen<br>Slepen met linker muisknop om te verplaatsen<br>Shift + Rechter muisknop om te hernoemen (Esc/Enter stopt)<br>Ctrl + Linker muisknop om te selecteren (meerdere selecteren met Shift)"
+    "message": "Slepen met de <b>Mouse Left</b>-knop om opnieuw te ordenen<br><b>Ctrl + Mouse Left</b>: selecteren (meerdere selecteren met <b>Shift</b>)<br><b>Esc</b>: selectie annuleren<br><b>Mouse Right</b>: naam wijzigen (<b>Esc</b>/<b>Enter</b> beëindigt)<br><b>Del</b>, <b>Ctrl + Mouse Right</b>: verwijderen<br><b>Ctrl + Space</b>, <b>Shift + Mouse Right</b>: uitschakelen/inschakelen<br><b>Ctrl + I</b>, <b>Ins</b>: importeren<br><b>Ctrl + E</b>, <b>Alt + Mouse Right</b>: exporteren<br><b>Ctrl + S</b>: opslaan"
   },
   "GRNT_RULEPERLINE": {
     "message": "Regels per regel. Voor meer informatie klik op de Details knop hierboven."
@@ -327,7 +327,7 @@
     "message": "licht"
   },
   "HZ_MARKONHOVER_TIP": {
-    "message": "Als de muis zich boven een link of thumbnail bevindt zal <b class=\"cur_zmin\">de cursor</b> of de omlijning van het <span style=\"border: 1px dashed red\">doel</span> veranderen, dit geeft weer dat er iets te zoomen valt."
+    "message": "Wanneer de muiscursor over een link of miniatuur wordt bewogen en er iets is om in te zoomen:\n• de omlijning van <span style=\"padding: 1px; translate: -1px -1px; outline: rgb(255, 120, 120) dashed 2px; box-shadow: white 0px 0px 0px 2px; border-radius: 2px;\">het doel</span> kan worden aangepast (kan worden aangepast in de geavanceerde modus)\n• en/of <b class=\"cur_zmin\">de cursor kan worden gewijzigd</b>"
   },
   "HZ_FULLSPACE_TIP": {
     "message": "Deze optie maakt het mogelijk om de pop-up te vergroten onder de cursor, als het niet genoeg ruimte heeft tussen de cursor en de zijkant van de pagina.\nAls de plaatsing is ingestelt naar het midden (vorige optie), zal deze optie geen effect hebben, omdat in dat geval de pop-up altijd de beschikbare ruimte zal gebruiken."
@@ -478,5 +478,17 @@
   },
   "SIV_TOG_RULE": {
     "message": "Regel uitschakelen/inschakelen"
+  },
+  "HZ_HOVER_CSS": {
+    "message": "Stijl van zoombare elementen (CSS)"
+  },
+  "HZ_MARKONHOVER_STYLED": {
+    "message": "overzicht (aangepaste stijl)"
+  },
+  "HZ_MARKONHOVER_BOTH": {
+    "message": "beide"
+  },
+  "IMPR_HINT": {
+    "message": "Esc: sluiten | Ctrl + Enter: importeren uit tekst"
   }
 }

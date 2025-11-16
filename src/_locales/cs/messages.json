@@ -30,7 +30,7 @@
     "message": "Jste si jisti?"
   },
   "DELITEMS": {
-    "message": "Přejete si odstranit vybrané nebo všechny položky?"
+    "message": "Odstranit tato pravidla?"
   },
   "EMPTY": {
     "message": "Nic"
@@ -243,10 +243,10 @@
     "message": "Importovat"
   },
   "SIV_BUTT_EXP": {
-    "message": "Exportovat vše nebo vybrané.\nCtrl: Exportovat do nové karty.\nShift: Formátovat JSON."
+    "message": "Exportovat vše nebo vybrané.\nCtrl: Exportovat do nové karty."
   },
   "SIV_BUTT_COPY": {
-    "message": "Zkopírovat všechna nebo vybraná pravidla do schránky.\nShift: Formátovat JSON."
+    "message": "Zkopírovat všechna nebo vybraná pravidla do schránky."
   },
   "SIV_BUTT_UPD": {
     "message": "Aktualizovat pravidla"
@@ -258,10 +258,10 @@
     "message": "Odstraňte pravidlo"
   },
   "SIV_EXP_RULE": {
-    "message": "Exportní pravidlo.\nCtrl: Export na novou kartu.\nShift: Formát JSON."
+    "message": "Exportní pravidlo.\nCtrl: Export na novou kartu."
   },
   "SIV_COPY_RULE": {
-    "message": "Zkopírujte pravidlo do schránky.\nShift: Formát JSON."
+    "message": "Zkopírujte pravidlo do schránky."
   },
   "SIV_CI": {
     "message": "Rozlišovat velikost písmen"
@@ -285,7 +285,7 @@
     "message": "Názvy pravidel se nesmí opakovat!"
   },
   "SIV_DETAILS": {
-    "message": "Ctrl + pravé tlačítko myši pro smazání<br>Přetáhněte levým tlačítkem myši pro přesun<br>Pravé tlačítko myši pro přejmenování (Esc/Enter ukončí)<br>Ctrl + levé tlačítko myši pro výběr (vícenásobný výběr se Shift)<br>Ctrl + S pro uložení"
+    "message": "Táhněte s <b>Mouse Left</b> tlačítkem pro přeřazení<br><b>Ctrl + Mouse Left</b>: vybrat (výběr více položek s <b>Shift</b>)<br><b>Esc</b>: zrušit výběr<br><b>Mouse Right</b>: přejmenovat (<b>Esc</b>/<b>Enter</b> ukončí)<br><b>Del</b>, <b>Ctrl + Mouse Right</b>: smazat<br><b>Ctrl + Space</b>, <b>Shift + Mouse Right</b>: zakázat/povolit<br><b>Ctrl + I</b>, <b>Ins</b>: importovat<br><b>Ctrl + E</b>, <b>Alt + Mouse Right</b>: exportovat<br><b>Ctrl + S</b>: uložit"
   },
   "GRNT_RULEPERLINE": {
     "message": "Pište každý filtr na samostatný řádek. Pro více informací klikněte na tlačítko Podrobnosti."
@@ -327,7 +327,7 @@
     "message": "světlý"
   },
   "HZ_MARKONHOVER_TIP": {
-    "message": "Přejedete-li kurzorem myši přes odkaz na obrázek nebo jeho miniaturu, změnou <b class=\"cur_zmin\">kurzoru</b> nebo ohraničení <span style=\"border: 1px dashed red\">cíle</span> bude dáno najevo, že je možné daný obrázek načíst ve vyšším rozlišení (otevřít v náhledu)."
+    "message": "Když se kurzor myši přesune nad odkaz nebo náhled a je co přiblížit:\n• obrys <span style=\"padding: 1px; translate: -1px -1px; outline: rgb(255, 120, 120) dashed 2px; box-shadow: white 0px 0px 0px 2px; border-radius: 2px;\">cíle</span> lze změnit (lze přizpůsobit v pokročilém režimu)\n• a/nebo <b class=\"cur_zmin\">lze změnit kurzor</b>"
   },
   "HZ_FULLSPACE_TIP": {
     "message": "Toto nastavení umožní náhledu využít ke svému zobrazení veškerý prostor na stránce bez ohledu na polohu kurzoru myši. Nepřejete-li si to, vypněte tuto volbu a náhled bude umístěn do prostoru mezi kurzorem myši a pravým/levým okrajem stránky (v závislosti na tom, kde je více místa).\nNastavíte-li v předchozí volbě umístění náhledu na střed, nebude na toto nastavení brán zřetel, protože v takovém případě bude náhled využívat veškeré volné místo vždy."
@@ -478,5 +478,17 @@
   },
   "SIV_TOG_RULE": {
     "message": "Zakázat/povolit pravidlo"
+  },
+  "HZ_HOVER_CSS": {
+    "message": "Styl prvků s možností přiblížení (CSS)"
+  },
+  "HZ_MARKONHOVER_STYLED": {
+    "message": "obrys (vlastní styl)"
+  },
+  "HZ_MARKONHOVER_BOTH": {
+    "message": "obě"
+  },
+  "IMPR_HINT": {
+    "message": "Esc: zavřít | Ctrl + Enter: import z textu"
   }
 }

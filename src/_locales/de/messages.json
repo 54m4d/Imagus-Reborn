@@ -243,7 +243,7 @@
     "message": "Importieren"
   },
   "SIV_BUTT_EXP": {
-    "message": "Exportiere alle oder ausgewählte"
+    "message": "Exportiere alle oder ausgewählte.\nStrg: In neuen Tab exportieren."
   },
   "SIV_BUTT_UPD": {
     "message": "Sieve aktualisieren"
@@ -270,7 +270,7 @@
     "message": "Jede Regel muss einen eindeutigen Namen haben!"
   },
   "SIV_DETAILS": {
-    "message": ""
+    "message": "Ziehen mit <b>Mouse Left</b>-Taste zum Umordnen<br><b>Ctrl + Mouse Left</b>: auswählen (Mehrfachauswahl mit <b>Shift</b>)<br><b>Esc</b>: Auswahl abbrechen<br><b>Mouse Right</b>: umbenennen (<b>Esc</b>/<b>Enter</b> beendet)<br><b>Del</b>, <b>Ctrl + Mouse Right</b>: löschen<br><b>Ctrl + Space</b>, <b>Shift + Mouse Right</b>: deaktivieren/aktivieren<br><b>Ctrl + I</b>, <b>Ins</b>: importieren<br><b>Ctrl + E</b>, <b>Alt + Mouse Right</b>: exportieren<br><b>Ctrl + S</b>: speichern"
   },
   "GRNT_RULEPERLINE": {
     "message": "Regel pro Zeile. Für weitere Informationen auf Details-Schaltfläche oben klicken."
@@ -312,7 +312,7 @@
     "message": "hell"
   },
   "HZ_MARKONHOVER_TIP": {
-    "message": "Wenn der Mauszeiger über einen Link oder ein Miniaturbild bewegt wird, wird <b class=\"cur_zmin\">der Mauszeiger</b> oder der Umriss des <span style=\"border: 1px dashed red\">Ziels< angezeigt /span> wird geändert, was darauf hinweist, dass es etwas zum Zoomen gibt."
+    "message": "Wenn der Mauszeiger über einen Link oder ein Vorschaubild bewegt wird und es etwas zum Vergrößern gibt:\n• die Umrandung des <span style=\"padding: 1px; translate: -1px -1px; outline: rgb(255, 120, 120) dashed 2px; box-shadow: white 0px 0px 0px 2px; border-radius: 2px;\">Ziels</span> kann geändert werden (kann im erweiterten Modus angepasst werden)\n• und/oder <b class=\"cur_zmin\">der Cursor kann geändert werden</b>"
   },
   "HZ_FULLSPACE_TIP": {
     "message": "Mit dieser Option kann das Pop-up unter dem Mauszeiger erweitert werden, wenn zwischen dem Mauszeiger und dem Seitenrand nicht genügend Platz vorhanden ist.\nWenn die Platzierung auf Mitte eingestellt ist (vorherige Option), dann hat die Aktivierung dieser Funktion keine Auswirkung, da das Pop-up in diesem Fall immer den gesamten verfügbaren Platz belegt."
@@ -456,16 +456,16 @@
     "message": "Super! \"Imagus\" ist jetzt bereit."
   },
   "SIV_BUTT_COPY": {
-    "message": "Kopieren Sie alle oder ausgewählte Regeln in die Zwischenablage.\nUmschalt: JSON formatieren."
+    "message": "Kopieren Sie alle oder ausgewählte Regeln in die Zwischenablage."
   },
   "SIV_COPY_RULE": {
-    "message": "Regel in die Zwischenablage kopieren.\nUmschalt: JSON formatieren."
+    "message": "Regel in die Zwischenablage kopieren."
   },
   "SIV_DEL_RULE": {
     "message": "Regel entfernen"
   },
   "SIV_EXP_RULE": {
-    "message": "Exportregel.\nStrg: In neuen Tab exportieren.\nUmschalt: JSON formatieren."
+    "message": "Exportregel.\nStrg: In neuen Tab exportieren."
   },
   "SIV_FORMAT_JS": {
     "message": "Formatieren Sie JavaScript-Code"
@@ -478,5 +478,17 @@
   },
   "SIV_TOG_RULE": {
     "message": "Regel deaktivieren/aktivieren"
+  },
+  "HZ_HOVER_CSS": {
+    "message": "Stil zoombarer Elemente (CSS)"
+  },
+  "HZ_MARKONHOVER_STYLED": {
+    "message": "Umriss (benutzerdefinierter Stil)"
+  },
+  "HZ_MARKONHOVER_BOTH": {
+    "message": "beide"
+  },
+  "IMPR_HINT": {
+    "message": "Esc: schließen | Ctrl + Enter: Aus Text importieren"
   }
 }

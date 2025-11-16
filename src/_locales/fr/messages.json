@@ -27,10 +27,10 @@
     "message": "Détails"
   },
   "AREYOUSURE": {
-    "message": "Êtes-vous sûr?"
+    "message": "Êtes-vous sûr ?"
   },
   "DELITEMS": {
-    "message": "Tout retirer ou retirer seulement les éléments sélectionnés ?"
+    "message": "Supprimer ces règles ?"
   },
   "EMPTY": {
     "message": "Vide..."
@@ -243,10 +243,10 @@
     "message": "Importer"
   },
   "SIV_BUTT_EXP": {
-    "message": "Exporter tout ou les éléments sélectionnés. Ctrl : Exporter dans un nouvel onglet. Maj : Formater en JSON."
+    "message": "Exporter tout ou les éléments sélectionnés.\nCtrl : Exporter dans un nouvel onglet."
   },
   "SIV_BUTT_COPY": {
-    "message": "Copier toutes les règles ou les règles sélectionnées dans le presse-papiers.\nShift: Formater en JSON."
+    "message": "Copier toutes les règles ou les règles sélectionnées dans le presse-papiers."
   },
   "SIV_BUTT_UPD": {
     "message": "Mettre à jour le Filtre"
@@ -258,10 +258,10 @@
     "message": "Supprimer la règle"
   },
   "SIV_EXP_RULE": {
-    "message": "Exporter la règle.\nCtrl: Exporter dans un nouvel onglet.\nShift: Formater en JSON."
+    "message": "Exporter la règle.\nCtrl: Exporter dans un nouvel onglet."
   },
   "SIV_COPY_RULE": {
-    "message": "Copier la règle dans le presse-papiers.\nShift: Formater en JSON."
+    "message": "Copier la règle dans le presse-papiers."
   },
   "SIV_CI": {
     "message": "Insensible à la casse"
@@ -276,7 +276,7 @@
     "message": "Préférer \"img\" par rapport à \"link\""
   },
   "SIV_UPDALERT": {
-    "message": "• Les règles actuelles seront ajoutées et mises à jour.\n• Les règles commençant par \"_\" seront conservées telles quelles.\n• Les autres règles seront désactivées et déplacées à la fin.\n\nContinuer?"
+    "message": "• Les règles actuelles seront ajoutées et mises à jour.\n• Les règles commençant par \"_\" seront conservées telles quelles.\n• Les autres règles seront désactivées et déplacées à la fin.\n\nContinuer ?"
   },
   "SIV_ERR_EMPTYNAME": {
     "message": "Le nom d'une règle ne peut être vide !"
@@ -285,7 +285,7 @@
     "message": "Chaque règle doit avoir un nom différent !"
   },
   "SIV_DETAILS": {
-    "message": "Ctrl + Clic droit pour supprimer<br>Faire glisser avec un clic gauche pour déplacer<br>Maj + Clic droit pour renommer (Échap/Entrée pour quitter)<br>Ctrl + Clic gauche pour sélectionner (sélection multiple avec Maj)"
+    "message": "Glisser avec le bouton <b>Mouse Left</b> pour réorganiser<br><b>Ctrl + Mouse Left</b> : sélectionner (sélection multiple avec <b>Shift</b>)<br><b>Esc</b> : annuler la sélection<br><b>Mouse Right</b> : renommer (<b>Esc</b>/<b>Enter</b> quitte)<br><b>Del</b>, <b>Ctrl + Mouse Right</b> : supprimer<br><b>Ctrl + Space</b>, <b>Shift + Mouse Right</b> : désactiver/activer<br><b>Ctrl + I</b>, <b>Ins</b> : importer<br><b>Ctrl + E</b>, <b>Alt + Mouse Right</b> : exporter<br><b>Ctrl + S</b> : enregistrer"
   },
   "GRNT_RULEPERLINE": {
     "message": "Une règle par ligne. Pour plus d'informations, cliquer sur le bouton Détails ci-dessus."
@@ -327,7 +327,7 @@
     "message": "clair"
   },
   "HZ_MARKONHOVER_TIP": {
-    "message": "Lorsque le curseur survole un lien ou une vignette, <b class=\"cur_zmin\">le curseur</b> ou le contour de <span style=\"border: 1px dashed red\">l'élément</span> sera modifié, indiquant qu'un zoom est possible."
+    "message": "Lorsque le curseur de la souris passe sur un lien ou une vignette et qu’il y a quelque chose à zoomer :\n• le contour de <span style=\"padding: 1px; translate: -1px -1px; outline: rgb(255, 120, 120) dashed 2px; box-shadow: white 0px 0px 0px 2px; border-radius: 2px;\">la cible</span> peut être modifié (peut être personnalisé en mode avancé)\n• et/ou <b class=\"cur_zmin\">le curseur peut être modifié</b>"
   },
   "HZ_FULLSPACE_TIP": {
     "message": "Cette option permet à l'aperçu de s'étendre sous le curseur, si il n'a pas assez de place entre le curseur et le bord de la page.\nSi la position est réglée sur \"centre\" (option précédente), l'activation de cette option n'a aucun effet, car l'aperçu prendra obligatoirement tout l'espace disponible."
@@ -462,7 +462,7 @@
     "message": "Super! \"Imagus\" est prêt."
   },
   "SIV_LOCALALERT": {
-    "message": "Charger le tamis par défaut ?"
+    "message": "Charger le tamis par défaut ?"
   },
   "SIV_FORMAT_JS": {
     "message": "Formater le code JavaScript"
@@ -478,5 +478,17 @@
   },
   "SIV_TOG_RULE": {
     "message": "Désactiver/activer la règle"
+  },
+  "HZ_HOVER_CSS": {
+    "message": "Style des éléments zoomables (CSS)"
+  },
+  "HZ_MARKONHOVER_STYLED": {
+    "message": "contour (style personnalisé)"
+  },
+  "HZ_MARKONHOVER_BOTH": {
+    "message": "les deux"
+  },
+  "IMPR_HINT": {
+    "message": "Échap : fermer | Ctrl + Enter : importer à partir du texte"
   }
 }
