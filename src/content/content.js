@@ -141,6 +141,14 @@
         PVI.md_x = e.clientX;
         PVI.md_y = e.clientY;
 
+        if (PVI.state > 2 && (cfg.hz.fzOnPress === 1 || cfg.hz.fzOnPress === 2) && !PVI.fullZm) {
+            clearTimeout(PVI.timers.cursor_hide);
+            clearTimeout(PVI.timers.cursor_wait);
+            const oldCursor = e.target.style.cursor;
+            e.target.style.cursor = "progress";
+            PVI.timers.cursor_wait = setTimeout(() => e.target.style.cursor = oldCursor, 300);
+        }
+
         if (e.target.href || e.target.parentNode?.href) {
             e.preventDefault();
         }
