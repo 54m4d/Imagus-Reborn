@@ -331,9 +331,9 @@
                 },
                 true
             );
-            x = doc.documentElement;
-            x.appendChild(PVI.DIV);
-            x.appendChild(PVI.LDR);
+            let docEl = doc.documentElement;
+            docEl.appendChild(PVI.DIV);
+            docEl.appendChild(PVI.LDR);
             PVI.DBOX = {};
             x = win.getComputedStyle(PVI.DIV);
             y = {
@@ -449,6 +449,15 @@
                 trg.IMGS_caption = PVI.HLP.textContent.trim().replace(/[\n\r]+/g, " ");
                 PVI.HLP.textContent = "";
             } else trg.IMGS_caption = "";
+        },
+
+        getCapHeight() {
+            return PVI.CAP?.overhead &&
+                   !(PVI.DIV.curdeg % 360) &&
+                   PVI.CAP.state !== 0 &&
+                   (PVI.CAP.state === 2 || (PVI.TRG?.IMGS_caption && cfg.hz.capText) || PVI.TRG?.IMGS_album || cfg.hz.capWH)
+                       ? PVI.CAP.overhead
+                       : 0;
         },
 
         flash_caption: function () {
@@ -1112,27 +1121,35 @@
             var rSide = winW - x;
             var bSide = winH - y;
             var left, top, rot, w, h, ratio;
+
             if ((msg === undefined && PVI.state === 4) || msg === true) {
                 msg = false;
                 if (PVI.TRG.IMGS_SVG) {
                     h = PVI.stack[PVI.IMG.src];
                     w = h[0];
                     h = h[1];
-                } else if ((w = PVI.CNT.naturalWidth)) h = PVI.CNT.naturalHeight;
-                else msg = true;
+                } else {
+                    w = PVI.CNT.naturalWidth;
+                    h = PVI.CNT.naturalHeight;
+                    if (!w) {
+                        msg = true;
+                    }
+                }
             }
+
             if (PVI.fullZm) {
                 if (!PVI.BOX) PVI.BOX = PVI.LDR;
                 if (msg === false) {
                     box = PVI.DIV.style;
                     box.visibility = "hidden";
-                    PVI.resize(0);
+                    PVI.resize(PVI.resizeMode || 0);
                     PVI.m_move();
                     box.visibility = "visible";
                     PVI.updateCaption();
                 } else PVI.m_move();
                 return;
             }
+
             if (msg === false) {
                 rot = PVI.DIV.curdeg % 180 !== 0;
                 if (rot) {
@@ -1149,96 +1166,92 @@
                 }
                 box = PVI.DBOX;
                 ratio = w / h;
-                var fs = cfg.hz.fullspace || cfg.hz.placement === 2,
-                    cap_size =
-                        PVI.CAP &&
-                        PVI.CAP.overhead &&
-                        !(PVI.DIV.curdeg % 360) &&
-                        PVI.CAP.state !== 0 &&
-                        (PVI.CAP.state === 2 || (PVI.TRG.IMGS_caption && cfg.hz.capText) || PVI.TRG.IMGS_album || cfg.hz.capWH)
-                            ? PVI.CAP.overhead
-                            : 0,
-                    vH = box["wm"] + (rot ? box["hpb"] : box["wpb"]),
-                    hH = box["hm"] + (rot ? box["wpb"] : box["hpb"]) + cap_size,
-                    vW = Math.min(w, (fs ? winW : x < rSide ? rSide : x) - vH),
-                    hW = Math.min(w, winW - vH);
-                vH = Math.min(h, winH - hH);
-                hH = Math.min(h, (fs ? winH : y < bSide ? bSide : y) - hH);
-                if ((fs = vW / ratio) > vH) vW = vH * ratio;
-                else vH = fs;
-                if ((fs = hH * ratio) > hW) hH = hW / ratio;
-                else hW = fs;
-                if (hW > vW) {
-                    w = Math.round(hW);
-                    h = Math.round(hH);
+                let lrMax = Math.max(rSide, x);
+                let tbMax = Math.max(bSide, y);
+                let fs = cfg.hz.fullspace || cfg.hz.placement === 2,
+                    cap_size = PVI.getCapHeight(),
+                    wBor = box["wm"] + (rot ? box["hpb"] : box["wpb"]),
+                    hBor = box["hm"] + (rot ? box["wpb"] : box["hpb"]) + cap_size,
+                    wImageAreaMin = Math.min(w, (fs ? winW : lrMax) - wBor),
+                    wImageWinMin = Math.min(w, winW - wBor),
+                    hImageWinMin = Math.min(h, winH - hBor),
+                    hImageAreaMin = Math.min(h, (fs ? winH : tbMax) - hBor);
+                if ((fs = wImageAreaMin / ratio) > hImageWinMin) wImageAreaMin = hImageWinMin * ratio;
+                else hImageWinMin = fs;
+                if ((fs = hImageAreaMin * ratio) > wImageWinMin) hImageAreaMin = wImageWinMin / ratio;
+                else wImageWinMin = fs;
+                if (wImageWinMin > wImageAreaMin) {
+                    w = Math.round(wImageWinMin);
+                    h = Math.round(hImageAreaMin);
                 } else {
-                    w = Math.round(vW);
-                    h = Math.round(vH);
+                    w = Math.round(wImageAreaMin);
+                    h = Math.round(hImageWinMin);
                 }
-                vW = w + box["wm"] + (rot ? box["hpb"] : box["wpb"]);
-                vH = h + box["hm"] + (rot ? box["wpb"] : box["hpb"]) + cap_size;
-                hW = PVI.TRG !== PVI.HLP && cfg.hz.minPopupDistance;
+
+                wImageAreaMin = w + wBor;
+                hImageWinMin = h + hBor;
+                wImageWinMin = PVI.TRG !== PVI.HLP && cfg.hz.minPopupDistance;
                 switch (cfg.hz.placement) {
-                    case 1:
-                        hH = (x < rSide ? rSide : x) < vW;
-                        if (hH && cfg.hz.fullspace && (winH - vH <= winW - vW || vW <= (x < rSide ? rSide : x))) hH = false;
-                        left = x - (hH ? vW / 2 : x < rSide ? 0 : vW);
-                        top = y - (hH ? (y < bSide ? 0 : vH) : vH / 2);
+                    case 1: // cursor at pop-up side
+                        hImageAreaMin = lrMax < wImageAreaMin;
+                        if (hImageAreaMin && cfg.hz.fullspace && (winH - hImageWinMin <= winW - wImageAreaMin || wImageAreaMin <= lrMax)) hImageAreaMin = false;
+                        left = x - (hImageAreaMin ? wImageAreaMin / 2 : x < rSide ? 0 : wImageAreaMin);
+                        top = y - (hImageAreaMin ? (y < bSide ? 0 : hImageWinMin) : hImageWinMin / 2);
                         break;
-                    case 2:
-                        left = (winW - vW) / 2;
-                        top = (winH - vH) / 2;
-                        hW = false;
+                    case 2: // pop-up at the center of the screen
+                        left = (winW - wImageAreaMin) / 2;
+                        top = (winH - hImageWinMin) / 2;
+                        wImageWinMin = false;
                         break;
-                    case 3:
-                        left = x < rSide || (vW >= PVI.x && winW - PVI.x >= vW) ? PVI.TBOX.right : x - vW;
-                        top = y < bSide || (vH >= PVI.y && winH - PVI.y >= vH) ? PVI.TBOX.bottom : y - vH;
-                        hH =
-                            (x < rSide ? rSide : x) < vW ||
-                            ((y < bSide ? bSide : y) >= vH && winW >= vW && (PVI.TBOX.width >= winW / 2 || Math.abs(PVI.x - left) >= winW / 3.5));
-                        if (!cfg.hz.fullspace || (hH ? vH <= (y < bSide ? bSide : y) : vW <= (x < rSide ? rSide : x))) {
+                    case 3: // no cover
+                        left = x < rSide || (wImageAreaMin >= PVI.x && winW - PVI.x >= wImageAreaMin) ? PVI.TBOX.right : x - wImageAreaMin;
+                        top = y < bSide || (hImageWinMin >= PVI.y && winH - PVI.y >= hImageWinMin) ? PVI.TBOX.bottom : y - hImageWinMin;
+                        hImageAreaMin =
+                            lrMax < wImageAreaMin ||
+                            ((tbMax) >= hImageWinMin && winW >= wImageAreaMin && (PVI.TBOX.width >= winW / 2 || Math.abs(PVI.x - left) >= winW / 3.5));
+                        if (!cfg.hz.fullspace || (hImageAreaMin ? hImageWinMin <= (tbMax) : wImageAreaMin <= lrMax)) {
                             fs = PVI.TBOX.width / PVI.TBOX.height;
-                            if (hH) {
-                                left = (PVI.TBOX.left + PVI.TBOX.right - vW) / 2;
-                                if (fs > 10) left = x < rSide ? Math.max(left, PVI.TBOX.left) : Math.min(left, PVI.TBOX.right - vW);
+                            if (hImageAreaMin) {
+                                left = (PVI.TBOX.left + PVI.TBOX.right - wImageAreaMin) / 2;
+                                if (fs > 10) left = x < rSide ? Math.max(left, PVI.TBOX.left) : Math.min(left, PVI.TBOX.right - wImageAreaMin);
                             } else {
-                                top = (PVI.TBOX.top + PVI.TBOX.bottom - vH) / 2;
-                                if (fs < 0.1) top = y < bSide ? Math.min(top, PVI.TBOX.top) : Math.min(top, PVI.TBOX.bottom - vH);
+                                top = (PVI.TBOX.top + PVI.TBOX.bottom - hImageWinMin) / 2;
+                                if (fs < 0.1) top = y < bSide ? Math.min(top, PVI.TBOX.top) : Math.min(top, PVI.TBOX.bottom - hImageWinMin);
                             }
                         }
                         break;
-                    case 4:
-                        left = x - vW / 2;
-                        top = y - vH / 2;
-                        hW = false;
+                    case 4: // cursor at pop-up center
+                        left = x - wImageAreaMin / 2;
+                        top = y - hImageWinMin / 2;
+                        wImageWinMin = false;
                         break;
-                    default:
-                        hH = null;
-                        left = x - (x < rSide ? Math.max(0, vW - rSide) : vW);
-                        top = y - (y < bSide ? Math.max(0, vH - bSide) : vH);
+                    default: // cursor at pop-up corner
+                        hImageAreaMin = null;
+                        left = x - (x < rSide ? Math.max(0, wImageAreaMin - rSide) : wImageAreaMin);
+                        top = y - (y < bSide ? Math.max(0, hImageWinMin - bSide) : hImageWinMin);
                 }
-                if (hW)
-                    if (hH || (x < rSide ? rSide : x) < vW || winH < vH) {
-                        hH = y < bSide ? box["mt"] : box["mb"];
-                        if (hW > hH) {
-                            hW -= hH;
-                            top += y < bSide ? hW : -hW;
+                if (wImageWinMin)
+                    if (hImageAreaMin || lrMax < wImageAreaMin || winH < hImageWinMin) {
+                        hImageAreaMin = 0;
+                        if (wImageWinMin > hImageAreaMin) {
+                            wImageWinMin -= hImageAreaMin;
+                            top += y < bSide ? wImageWinMin : -wImageWinMin;
                         }
                     } else {
-                        hH = x < rSide ? box["ml"] : box["mr"];
-                        if (hW > hH) {
-                            hW -= hH;
-                            left += x < rSide ? hW : -hW;
+                        hImageAreaMin = 0;
+                        if (wImageWinMin > hImageAreaMin) {
+                            wImageWinMin -= hImageAreaMin;
+                            left += x < rSide ? wImageWinMin : -wImageWinMin;
                         }
                     }
-                left = left < 0 ? 0 : left > winW - vW ? winW - vW : left;
-                top = top < 0 ? 0 : top > winH - vH ? winH - vH : top;
+                left = left < 0 ? 0 : left > winW - wImageAreaMin ? winW - wImageAreaMin : left;
+                top = top < 0 ? 0 : top > winH - hImageWinMin ? winH - hImageWinMin : top;
                 if (cap_size && !cfg.hz.capPos) top += cap_size;
                 if (rot) {
                     rot = w;
                     w = h;
                     h = rot;
-                    rot = (vW - vH) / 2;
+                    rot = (wImageAreaMin - hImageWinMin) / 2;
                     left += rot;
                     top -= rot;
                 }
@@ -1257,8 +1270,8 @@
                 top = y - top;
             }
             if (left !== undefined) {
-                PVI.BOX.style.left = left + "px";
-                PVI.BOX.style.top = top + "px";
+                PVI.BOX.style.left = Math.floor(left) + "px";
+                PVI.BOX.style.top = Math.floor(top) + "px";
             }
             PVI.showHVR();
         },
@@ -2070,20 +2083,24 @@
             var rot = PVI.DIV.curdeg % 180;
             viewportDimensions();
             if (rot) s.reverse();
-            if (x === k.mFit)
-                if (winW / winH < s[0] / s[1]) x = winW > s[0] ? 0 : k.mFitW;
-                else x = winH > s[1] ? 0 : k.mFitH;
+            let winWI = winW - PVI.DBOX["wpb"] - PVI.DBOX["wm"];
+            let winHI = winH - PVI.DBOX["hpb"] - PVI.DBOX["hm"] - PVI.getCapHeight();
+            if (x === k.mFit || x === 0) {
+                if (winWI / winHI < s[0] / s[1]) {
+                    x = winWI > s[0] ? 0 : k.mFitW;
+                } else {
+                    x = winHI > s[1] ? 0 : k.mFitH;
+                }
+            }
             switch (x) {
                 case k.mFitW:
-                    winW -= PVI.DBOX["wpb"];
-                    s[1] *= winW / s[0];
-                    s[0] = winW;
+                    s[1] *= winWI / s[0];
+                    s[0] = winWI;
                     if (PVI.fullZm > 1) PVI.y = 0;
                     break;
                 case k.mFitH:
-                    winH -= PVI.DBOX["hpb"];
-                    s[0] *= winH / s[1];
-                    s[1] = winH;
+                    s[0] *= winHI / s[1];
+                    s[1] = winHI;
                     if (PVI.fullZm > 1) PVI.y = 0;
                     break;
                 case "+":
@@ -2323,8 +2340,7 @@
                             h = h[1] / h[0];
                         }
                         w = e[2] || parseInt(PVI.DIV.style.width, 10);
-                        h = parseInt(w * (h || PVI.CNT.naturalHeight / PVI.CNT.naturalWidth) + PVI.DBOX["hpb"], 10);
-                        w += PVI.DBOX["wpb"];
+                        h = parseInt(w * (h || PVI.CNT.naturalHeight / PVI.CNT.naturalWidth), 10);
                     } else {
                         w = PVI.LDR.wh[0];
                         h = PVI.LDR.wh[1];
@@ -2335,16 +2351,16 @@
                         h = rot;
                         rot = (w - h) / 2;
                     } else rot = 0;
-                    x = (w - PVI.DBOX["wpb"] > winW ? -((PVI.x * (w - winW + 80)) / winW) + 40 : (winW - w) / 2) + rot - PVI.DBOX["ml"];
-                    y = (h - PVI.DBOX["hpb"] > winH ? -((PVI.y * (h - winH + 80)) / winH) + 40 : (winH - h) / 2) - rot - PVI.DBOX["mt"];
+                    x = (w - PVI.DBOX["wpb"] > winW ? -((PVI.x * (w - winW + 80)) / winW) + 40 : (winW - w) / 2) + rot - PVI.DBOX["wpb"];
+                    y = (h - PVI.DBOX["hpb"] > winH ? -((PVI.y * (h - winH + 80)) / winH) + 40 : (winH - h) / 2) - rot;
                 }
                 if (e[2] !== undefined) {
                     PVI.BOX.style.width = e[2] + "px";
                     PVI.BOX.style.height = e[3] + "px";
                 }
                 if (x !== null) {
-                    PVI.BOX.style.left = x + "px";
-                    PVI.BOX.style.top = y + "px";
+                    PVI.BOX.style.left = Math.floor(x) + "px";
+                    PVI.BOX.style.top = Math.floor(y) + "px";
                 }
                 return;
             }
@@ -2470,8 +2486,15 @@
         onWinResize: function () {
             viewportDimensions();
             if (PVI.state < 3) return;
-            if (!PVI.fullZm) PVI.show();
-            else if (PVI.fullZm === 1) PVI.m_move();
+            if (!PVI.fullZm) {
+                PVI.show();
+            } else if (PVI.fullZm === 1) {
+                if (PVI.resizeMode) {
+                    PVI.resize(PVI.resizeMode);
+                } else {
+                    PVI.m_move();
+                }
+            }
         },
 
         winOnMessage: function (e) {
