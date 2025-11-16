@@ -258,7 +258,7 @@
             PVI.DIV.IMGS_ = PVI.DIV.IMGS_c = PVI.LDR.IMGS_ = PVI.LDR.IMGS_c = PVI.VID.IMGS_ = PVI.VID.IMGS_c = PVI.IMG.IMGS_ = PVI.IMG.IMGS_c = true;
             PVI.DIV.style.cssText =
                 "margin: 0; padding: 0; " +
-                (cfg.hz.css || "") +
+                (cfg.hz.popupCss || "") +
                 "; visibility: visible; cursor: default; display: none; z-index: 2147483647; " +
                 "position: fixed !important; box-sizing: content-box !important; left: auto; top: auto; right: auto; bottom: auto; width: auto; height: auto; max-width: none !important; max-height: none !important; ";
             PVI.DIV.curdeg = 0;
