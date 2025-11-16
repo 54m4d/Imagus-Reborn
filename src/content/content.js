@@ -1788,21 +1788,38 @@
                 win.addEventListener("keyup", PVI.keyup_freeze, true);
                 return;
             }
-            if (!e.repeat)
+
+            if (!e.repeat) {
                 if (PVI.keyup_freeze_on) PVI.keyup_freeze();
-                else if (PVI.freeze === false && !PVI.fullZm && PVI.lastScrollTRG) PVI.mover({ target: PVI.lastScrollTRG });
+            } else if (PVI.freeze === false && !PVI.fullZm && PVI.lastScrollTRG) {
+                PVI.mover({ target: PVI.lastScrollTRG });
+            }
+
             key = shortcut.key(e);
-            if (PVI.state < 3 && PVI.fireHide && key === "Esc") PVI.m_over({ relatedTarget: PVI.TRG });
+            if (PVI.state < 3 && PVI.fireHide && key === "Esc") {
+                PVI.m_over({ relatedTarget: PVI.TRG });
+            }
             pv = e.target;
-            if (cfg.hz.scOffInInput && pv && (pv.isContentEditable || ((pv = pv.nodeName.toUpperCase()) && (pv[2] === "X" || pv === "INPUT")))) return;
+
+            if (cfg.hz.scOffInInput && pv && (pv.isContentEditable || ((pv = pv.nodeName.toUpperCase()) && (pv[2] === "X" || pv === "INPUT")))) {
+                return;
+            }
+
             if (e.altKey && e.shiftKey) {
                 pv = true;
-                if (key === cfg.keys.hz_preload) win.top.postMessage({ vdfDpshPtdhhd: "preload" }, "*");
-                else if (key === cfg.keys.hz_toggle) {
-                    if (win.sessionStorage.IMGS_suspend) delete win.sessionStorage.IMGS_suspend;
-                    else win.sessionStorage.IMGS_suspend = "1";
+                if (key === cfg.keys.hz_preload) {
+                    win.top.postMessage({ vdfDpshPtdhhd: "preload" }, "*");
+                } else if (key === cfg.keys.hz_toggle) {
+                    if (win.sessionStorage.IMGS_suspend) {
+                        delete win.sessionStorage.IMGS_suspend;
+                    } else {
+                        win.sessionStorage.IMGS_suspend = "1";
+                    }
                     win.top.postMessage({ vdfDpshPtdhhd: "toggle" }, "*");
-                } else pv = false;
+                } else {
+                    pv = false;
+                }
+
             } else if (!(e.altKey || e.metaKey) && (PVI.state > 2 || PVI.LDR_msg)) {
                 pv = !e.ctrlKey;
                 if (e.ctrlKey && key === "S" || !e.ctrlKey && !e.shiftKey && key === cfg.keys.hz_save) {
@@ -1818,7 +1835,7 @@
                     pv = true;
 
                 } else if (e.ctrlKey) {
-                    if (PVI.state === 4)
+                    if (PVI.state === 4) {
                         if (key === "C") {
                             if (!e.shiftKey && "oncopy" in doc) {
                                 pv = true;
@@ -1847,12 +1864,17 @@
                         } else if (key === "Left" || key === "Right") {
                             key = key === "Left" ? -5 : 5;
                             PVI.VID.currentTime += key * (e.shiftKey ? 3 : 1);
+                            e.preventDefault?.();
                         } else if (key === "Up" || key === "Down") {
                             const delta = key === "Down" ? -0.05 : 0.05;
                             PVI.VID.volume = Math.max(0, Math.min(1, PVI.VID.volume + delta));
                         }
-                } else if (key === "-" || key === "+" || key === "=") PVI.resize(key === "-" ? "-" : "+");
-                else if (key === "Tab") {
+                    }
+
+                } else if (key === "-" || key === "+" || key === "=") {
+                    PVI.resize(key === "-" ? "-" : "+");
+
+                } else if (key === "Tab") {
                     if (PVI.TRG.IMGS_HD_stack) {
                         if (PVI.CAP) PVI.CAP.style.display = "none";
                         PVI.TRG.IMGS_HD = !PVI.TRG.IMGS_HD;
@@ -1861,12 +1883,18 @@
                         PVI.set(PVI.TRG.IMGS_HD_stack);
                         PVI.TRG.IMGS_HD_stack = key;
                     }
-                    if (e.shiftKey) cfg.hz.hiRes = !cfg.hz.hiRes;
-                } else if (key === "Esc")
-                    if (PVI.CNT === PVI.VID && (win.fullScreen || doc.fullscreenElement || (topWinW === win.screen.width && topWinH === win.screen.height)))
+                    if (e.shiftKey) {
+                        cfg.hz.hiRes = !cfg.hz.hiRes;
+                    }
+
+                } else if (key === "Esc") {
+                    if (PVI.CNT === PVI.VID && (win.fullScreen || doc.fullscreenElement || (topWinW === win.screen.width && topWinH === win.screen.height))) {
                         pv = false;
-                    else PVI.reset(true);
-                else if (key === cfg.keys.hz_fullZm || key === "Enter")
+                    } else {
+                        PVI.reset(true);
+                    }
+
+                } else if (key === cfg.keys.hz_fullZm || key === "Enter") {
                     if (PVI.fullZm)
                         if (e.shiftKey) PVI.fullZm = PVI.fullZm === 1 ? 2 : 1;
                         else PVI.reset(true);
@@ -1882,7 +1910,10 @@
                                 if (!PVI.VID.audio) PVI.VID.controls = PVI.VID._controls = !PVI.VID._controls;
                             } else if (PVI.VID.paused) PVI.VID.play();
                             else PVI.VID.pause();
-                        else if (key === "Up" || key === "Down")
+                        else if ((key === "Right" || key === "Left") && !PVI.TRG.IMGS_album && !e.shiftKey) {
+                            let delta = key === "Left" ? -5 : 5;
+                            PVI.VID.currentTime += delta;
+                        } else if (key === "Up" || key === "Down")
                             if (e.shiftKey) PVI.VID.playbackRate *= key === "Up" ? 4 / 3 : 0.75;
                             else pv = null;
                         else if (!e.shiftKey && (key === "PgUp" || key === "PgDn"))

@@ -351,7 +351,7 @@
     "message": "Scroll through an album with mouse wheel"
   },
   "HZ_PILEWHEEL_TIP": {
-    "message": "Mouse wheel can be used to step between entries of an album, in addition to shortcuts.\nIf it's enabled, then it will prevent the page from scrolling while the pop-up is visible.\nIn full-zoom the default function is zooming for mouse wheel. To use image switching, wheeling must be done in the top-left corner (50x50px) of the screen, or over the counter in caption."
+    "message": "Mouse wheel can be used to step between entries of an album, in addition to shortcuts.\nIf it's enabled, then it will prevent the page from scrolling while the pop-up is visible.\nIn full-zoom it works in two modes:\n• Zooming while over the image\n• Image switching while scrolling outside of the image or near the window borders (100px)."
   },
   "HZ_FZONPRESS": {
     "message": "Activation with right mouse button"
