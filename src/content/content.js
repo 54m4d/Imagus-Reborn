@@ -1871,27 +1871,9 @@
                         if (e.shiftKey) PVI.fullZm = PVI.fullZm === 1 ? 2 : 1;
                         else PVI.reset(true);
                     else {
-                        win.removeEventListener("mouseover", PVI.m_over, true);
-                        doc.removeEventListener("wheel", PVI.scroller, true);
-                        doc.documentElement.removeEventListener("mouseleave", PVI.m_leave, false);
-                        PVI.fullZm = (cfg.hz.fzMode !== 1) !== !e.shiftKey ? 1 : 2;
-                        PVI.switchToHiResInFZ();
-                        if (PVI.anim.maxDelay)
-                            setTimeout(function () {
-                                if (PVI.fullZm) PVI.DIV.style.transition = "all 0s";
-                            }, PVI.anim.maxDelay);
-                        pv = PVI.DIV.style;
-                        if (PVI.CNT === PVI.VID) PVI.VID.controls = true;
-                        if (PVI.state > 2 && PVI.fullZm !== 2) {
-                            pv.visibility = "hidden";
-                            PVI.resize(0);
-                            PVI.m_move();
-                            pv.visibility = "visible";
-                        }
-                        if (!PVI.iFrame) win.addEventListener("mousemove", PVI.m_move, true);
-                        win.addEventListener("click", PVI.fzClickAct, true);
+                        PVI.fzEnable(e);
                     }
-                else if (e.which > 31 && e.which < 41) {
+                } else if (e.which > 31 && e.which < 41) {
                     pv = null;
                     if (PVI.CNT === PVI.VID) {
                         pv = true;
@@ -1933,8 +1915,14 @@
                             pv = true;
                         }
                     }
-                } else if (key === cfg.keys.mOrig || key === cfg.keys.mFit || key === cfg.keys.mFitW || key === cfg.keys.mFitH) PVI.resize(key);
-                else if (key === cfg.keys.hz_fullSpace) {
+                } else if (key === cfg.keys.mOrig || key === cfg.keys.mFit || key === cfg.keys.mFitW || key === cfg.keys.mFitH) {
+                    PVI.resizeMode = key;
+                    if (PVI.fullZm) {
+                        PVI.resize(key);
+                    } else {
+                        PVI.fzEnable(e);
+                    }
+                } else if (key === cfg.keys.hz_fullSpace) {
                     cfg.hz.fullspace = !cfg.hz.fullspace;
                     PVI.show();
                 } else if (key === cfg.keys.flipH) flip(PVI.CNT, 0);
@@ -1990,6 +1978,28 @@
             PVI.show("load");
             PVI.key_action({ which: 9 });
             return true;
+        },
+
+        fzEnable: function (e) {
+            win.removeEventListener("mouseover", PVI.m_over, true);
+            doc.removeEventListener("wheel", PVI.scroller, true);
+            doc.documentElement.removeEventListener("mouseleave", PVI.m_leave, false);
+            PVI.fullZm = (cfg.hz.fzMode !== 1) !== !e.shiftKey ? 1 : 2;
+            PVI.switchToHiResInFZ();
+            if (PVI.anim.maxDelay)
+                setTimeout(function () {
+                    if (PVI.fullZm) PVI.DIV.style.transition = "all 0s";
+                }, PVI.anim.maxDelay);
+            if (PVI.CNT === PVI.VID) PVI.VID.controls = true;
+            if (PVI.state > 2 && PVI.fullZm !== 2) {
+                PVI.DIV.style.visibility = "hidden";
+                PVI.resizeMode ||= cfg.keys.mFit;
+                PVI.resize(PVI.resizeMode || 0);
+                PVI.m_move();
+                PVI.DIV.style.visibility = "visible";
+            }
+            if (!PVI.iFrame) win.addEventListener("mousemove", PVI.m_move, true);
+            win.addEventListener("click", PVI.fzClickAct, true);
         },
 
         fzDragEnd: function () {
