@@ -509,8 +509,11 @@
                     h.style.display = "inline-block";
                     h.style.color = PVI.palette[PVI.TRG.IMGS_HD === false ? "wh_fg_hd" : "wh_fg"];
                     h.textContent = (PVI.TRG.IMGS_SVG ? PVI.stack[PVI.IMG.src] : [PVI.CNT.naturalWidth, PVI.CNT.naturalHeight]).join("×");
+                    const scale = Math.round(PVI.CNT.offsetHeight / PVI.CNT.naturalHeight * 100);
+                    if (scale !== 100) h.textContent += ` (${scale}%)`;
                 } else h.style.display = "none";
             }
+
             h = c.lastChild;
             if (cfg.hz.capText || c.state === 2) {
                 h.textContent = PVI.TRG.IMGS_caption || "";
@@ -2357,6 +2360,7 @@
                 if (e[2] !== undefined) {
                     PVI.BOX.style.width = e[2] + "px";
                     PVI.BOX.style.height = e[3] + "px";
+                    PVI.updateCaption();
                 }
                 if (x !== null) {
                     PVI.BOX.style.left = Math.floor(x) + "px";
